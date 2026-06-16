@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vibe-guard"
+version = "0.2.0"
+description = "Verification layer for AI-generated code: feature alignment + security red lines."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Vibe Guard contributors" }]
+dependencies = [
+    "pydantic>=2.5",
+    "typer>=0.12",
+    "rich>=13",
+    "openai>=1.30",
+    "tree-sitter>=0.21",
+    "tree-sitter-python>=0.21",
+]
+
+[project.optional-dependencies]
+security = ["semgrep>=1.50"]
+dev = ["pytest>=8"]
+
+[project.scripts]
+vibe-guard = "vibe_guard.cli:main"
+vibe-guard-deps = "vibe_guard.hallucheck.cli:main"
+
+[tool.setuptools]
+packages = ["vibe_guard", "vibe_guard.hallucheck"]
